@@ -1,5 +1,5 @@
 // Imports
-
+require('dotenv').config()
 
 // Middleware
 
