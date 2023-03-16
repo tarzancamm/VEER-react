@@ -25,7 +25,7 @@ Adventure.belongsTo(Country)
 // Endpoints
 
 
-// Sync db and run server. { force: true }
+// Sync db and run server. { force: true } in db.sync to drop all tables
 db.sync()
     // .then(() => seedCountries())
     .then(() => {
