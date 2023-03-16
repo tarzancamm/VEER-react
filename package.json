@@ -12,12 +12,14 @@
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
-    "mongoose": "^7.0.1",
+    "pg": "^8.10.0",
+    "pg-hstore": "^2.3.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.9.0",
     "react-scripts": "5.0.1",
+    "sequelize": "^6.29.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -25,7 +27,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "devStart": "nodemon server/server.js"
+    "server": "nodemon server/server.js"
   },
   "eslintConfig": {
     "extends": [
