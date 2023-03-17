@@ -1,8 +1,12 @@
 import React from 'react'
+import HowToVeer from '../components/Home/HowToVeer'
 
 const HomeScreen = () => {
   return (
-    <div>HomeScreen</div>
+    <div className='homescreen'>
+      <HowToVeer />
+
+    </div>
   )
 }
 

@@ -2,8 +2,33 @@
     position: fixed;
     top: 0;
     left: 0;
-    height: 4rem;
+    height: 5rem;
     width: 100vw;
     border-bottom: 1px solid #EE291B;
-    background-color: red;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    margin-left: 5%;
+    height: 4.5rem;
+    width: auto;
+}
+
+.nav {
+    display: flex;
+    gap: 2rem;
+    margin-right: 6%;
+}
+
+.navlink {
+    text-decoration: none;
+    color: #0A0908;
+}
+
+.navlink:hover {
+    color: #EE291B;
+    cursor: pointer;
 }
