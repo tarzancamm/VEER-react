@@ -7,7 +7,7 @@ import Header from './components/PermanentLayout/Header';
 
 function App() {
   return (
-    <div>
+    <div className='font-default text-black'>
       <Header />
       <Routes>
         <Route path='*' element={<Navigate to='/' />} />
