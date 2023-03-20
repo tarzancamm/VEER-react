@@ -13,15 +13,16 @@ module.exports = {
     fontFamily: {
       default: ['Kantumruy Pro', 'sans-serif']
     },
-    colors: {
-      'red': '#EE291B',
-      'pink': '#FAD0C3',
-      'black': '#0A0908',
-      'tan': '#F8F3E4',
-      'green': '#5B9279',
-      transparent: 'transparent'
-    },
-    extend: {}
+    extend: {
+      colors: {
+        'red': '#EE291B',
+        'pink': '#FAD0C3',
+        'black': '#0A0908',
+        'tan': '#F8F3E4',
+        'green': '#5B9279',
+        transparent: 'transparent'
+      },
+    }
   },
   plugins: [],
 }
