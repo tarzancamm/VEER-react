@@ -1,19 +1,30 @@
+import React, {useState} from 'react'
 import './App.css';
 import {Routes, Route, Navigate} from 'react-router-dom'
 
 import HomeScreen from './screens/HomeScreen'
 import ProfileScreen from './screens/ProfileScreen';
-import Header from './components/PermanentLayout/Header';
+import LoginModal from './components/PermanentLayout/LoginModal';
 
 function App() {
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   return (
-    <div className='font-default text-black'>
-      <Header />
+    <div className={modalIsOpen ? 'font-default text-black overflow-hidden' : 'font-default text-black'}>
       <Routes>
         <Route path='*' element={<Navigate to='/' />} />
-        <Route path='/' element={<HomeScreen />} />
+        <Route path='/' element={<HomeScreen openModal={openModal} />} />
         <Route path='/profile' element={<ProfileScreen />} />
       </Routes>
+      {modalIsOpen && <LoginModal modalState={modalIsOpen} closeModal={closeModal} />}
     </div>
   );
 }

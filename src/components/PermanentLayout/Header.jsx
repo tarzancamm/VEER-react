@@ -3,11 +3,12 @@ import { NavLink } from "react-router-dom";
 import VEERlogo from "../../media/VEERlogo.png";
 import { GrMenu } from "react-icons/gr";
 import {RxCross2} from 'react-icons/rx';
+import {CgProfile} from 'react-icons/cg';
 
-const Header = () => {
+const Header = ({openModal}) => {
   const [showMenu, setShowMenu] = useState(false);
 
-
+  const closeMenuHandler = () => setShowMenu(false);
 
   return (
     <Fragment>
@@ -17,13 +18,19 @@ const Header = () => {
                 {showMenu ? <RxCross2 /> : <GrMenu />}
             </button>
         </header>
-        <nav className={showMenu ? "absolute top-20 h-screen w-64 z-50 bg-white right-0 transition-all ease-in-out duration-300 border-l-2 border-solid border-red" : "absolute top-20 h-screen w-64 z-50 bg-white -right-64 transition-all ease-in-out duration-300"}>
-          <NavLink to="#adventures" className="hover:text-red">
+        <nav className={showMenu ? "absolute h-screen w-64 z-40 bg-white right-0 transition-all ease-in-out duration-300 border-l-2 border-solid border-red flex flex-col gap-4" : "absolute h-screen w-64 z-40 bg-white -right-64 transition-all ease-in-out duration-300"}>
+          <NavLink to="#adventures" className="hover:text-red ml-8 mt-8">
             Adventures
           </NavLink>
-          <NavLink to="/profile" className="hover:text-red">
-            Login
+          <NavLink to="/profile" onClick={closeMenuHandler} className="hover:text-red ml-8">
+            Profile
           </NavLink>
+          <button className="ml-8 flex" onClick={openModal}>
+            <div className="pr-2">
+                <CgProfile />
+            </div>
+            <p>login / signup</p>
+          </button>
         </nav>
     </Fragment>
   );
