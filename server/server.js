@@ -11,6 +11,9 @@ const {User, Adventure, Country} = require('./util/models')
 
 // Store express in variable
 const server = express()
+
+// Controller functions
+const {login, register} = require('./controllers/auth')
  
 // Middleware to run on every endpoint
 server.use(express.json()) // Parses incoming JSON requests and puts the parsed data in req.body
@@ -23,7 +26,8 @@ Country.hasMany(Adventure)
 Adventure.belongsTo(Country)
 
 // Endpoints
-
+server.post('/register', register)
+server.post('/login', login)
 
 // Sync db and run server. { force: true } in db.sync to drop all tables
 db.sync()

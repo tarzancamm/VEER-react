@@ -19,12 +19,12 @@ function App() {
 
   return (
     <div className={modalIsOpen ? 'font-default text-black overflow-hidden' : 'font-default text-black'}>
+      {modalIsOpen && <LoginModal modalState={modalIsOpen} closeModal={closeModal} />}
       <Routes>
         <Route path='*' element={<Navigate to='/' />} />
         <Route path='/' element={<HomeScreen openModal={openModal} />} />
         <Route path='/profile' element={<ProfileScreen />} />
       </Routes>
-      {modalIsOpen && <LoginModal modalState={modalIsOpen} closeModal={closeModal} />}
     </div>
   );
 }
