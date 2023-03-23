@@ -77,11 +77,10 @@ const LoginModal = ({ modalState, closeModal }) => {
 
     register && axios.post('/register', body)
       .then((res) => {
-        console.log(res)
         authCtx.login(res.data.token, res.data.userId, res.data.exp)
       })
       .then(() => {
-        // Close modal
+        closeModal()
         navigate('/profile')
       })
       .catch((err) => {
@@ -101,11 +100,10 @@ const LoginModal = ({ modalState, closeModal }) => {
 
     !register && axios.post('/login', body)
       .then((res) => {
-        console.log(res)
         authCtx.login(res.data.token, res.data.userId, res.data.exp)
       })
       .then(() => {
-        // Close modal
+        closeModal()
         navigate('/profile')
       })
       .catch((err) => {
