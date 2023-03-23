@@ -35,8 +35,8 @@ const LoginModal = ({ modalState, closeModal }) => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [register, setRegister] = useState(false)
-  const [loginValid, setLoginValid] = useState(true)
-  const [registerValid, setRegisterValid] = useState(true)
+  // const [loginValid, setLoginValid] = useState(true)
+  // const [registerValid, setRegisterValid] = useState(true)
   const navigate = useNavigate()
   const authCtx = useContext(AuthContext)
 
@@ -78,18 +78,49 @@ const LoginModal = ({ modalState, closeModal }) => {
     register && axios.post('/register', body)
       .then((res) => {
         console.log(res)
-        // authCtx.login(res.data.)
+        authCtx.login(res.data.token, res.data.userId, res.data.exp)
+      })
+      .then(() => {
+        // Close modal
+        navigate('/profile')
       })
       .catch((err) => {
-        console.log(err)
+        if (err.response) {
+          // Client received error in response
+          console.log(err.response.data)
+          console.log(err.response.status)
+          console.log(err.response.headers)
+      } else if (err.request) { 
+          // Client never received response
+          console.log(err.request)
+      } else { 
+          // Anything else
+          console.log('error', err.message)
+      }
       })
 
     !register && axios.post('/login', body)
       .then((res) => {
         console.log(res)
+        authCtx.login(res.data.token, res.data.userId, res.data.exp)
+      })
+      .then(() => {
+        // Close modal
+        navigate('/profile')
       })
       .catch((err) => {
-        console.log(err)
+        if (err.response) {
+          // Client received error in response
+          console.log(err.response.data)
+          console.log(err.response.status)
+          console.log(err.response.headers)
+      } else if (err.request) { 
+          // Client never received response
+          console.log(err.request)
+      } else { 
+          // Anything else
+          console.log('error', err.message)
+      }
       })
   }
 

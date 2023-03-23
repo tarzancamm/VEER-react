@@ -6,19 +6,19 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 // Handler for creating a json web token, which helps persist logged-in state
-const createToken = (username, id) => {
-  return jwt.sign({ username, id }, JWT_SECRET_KEY, { expiresIn: 86400000 }); // Sign key with payload (username & id), JWT Secret and expiration of 24 hrs 86400000.
+const createToken = (emailAddress, id) => {
+  return jwt.sign({ emailAddress, id }, JWT_SECRET_KEY, { expiresIn: 86400000 }); // Sign key with payload (username & id), JWT Secret and expiration of 24 hrs 86400000.
 };
 
 // Login & Logout functionality
 module.exports = {
   register: async (req, res) => {
     try {
-      const { firstName, lastName, username, password } = req.body;
+      const { firstName, lastName, email, password } = req.body;
 
-      let foundUser = await User.findOne({ where: { username: username } }); // Checks if user already exists
+      let foundUser = await User.findOne({ where: { emailAddress: email } }); // Checks if user already exists
       let validPassword = password.length > 6
-      let validEmail = username.includes('@')
+      let validEmail = email.includes('@')
 
       if (foundUser) {
         res.status(400).send("User already exists");
@@ -34,13 +34,13 @@ module.exports = {
         const newUser = await User.create({
           firstName,
           lastName,
-          username,
+          emailAddress: email,
           hashedPass: hash,
         });
 
         // Creates token using createToken handler
         const token = createToken(
-          newUser.dataValues.username,
+          newUser.dataValues.emailAddress,
           newUser.dataValues.id
         );
         console.log(newUser);
@@ -50,8 +50,8 @@ module.exports = {
 
         // Sends back data to be used to login new user
         res.status(200).send({
-          username: newUser.dataValues.username,
-          userId: newUser.dataValues.id,
+          email: newUser.dataValues.emailAddress,
+          userId: newUser.dataValues.userId,
           token: token,
           exp: exp,
         });
@@ -65,9 +65,9 @@ module.exports = {
 
   login: async (req, res) => {
     try {
-      const { username, password } = req.body; // Desctructure request body
+      const { email, password } = req.body; // Desctructure request body
 
-      let foundUser = await User.findOne({ where: { username: username } }); // Finds user in db
+      let foundUser = await User.findOne({ where: { emailAddress: email } }); // Finds user in db
 
       // userAuthenticated compares passwords and returns boolean
       if (foundUser) {
@@ -78,7 +78,7 @@ module.exports = {
         // Creates token IF user is authenticated
         if (userAuthenticated) {
           const token = createToken(
-            foundUser.dataValues.username,
+            foundUser.dataValues.emailAddress,
             foundUser.dataValues.id
           );
 
@@ -86,8 +86,8 @@ module.exports = {
 
           // Sends data to be used in login handler on frontend
           res.status(200).send({
-            username: foundUser.dataValues.username,
-            userId: foundUser.dataValues.id,
+            email: foundUser.dataValues.emailAddress,
+            userId: foundUser.dataValues.userId,
             token: token,
             exp: exp,
           });
