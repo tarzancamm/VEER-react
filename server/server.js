@@ -2,7 +2,7 @@
 require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
-const {PORT, DATABASE_URL} = process.env
+const {PORT} = process.env
 const db = require('./util/database')
 const {seedCountries} = require('./util/seed')
 

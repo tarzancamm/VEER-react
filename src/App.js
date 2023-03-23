@@ -7,14 +7,14 @@ import ProfileScreen from './screens/ProfileScreen';
 import LoginModal from './components/PermanentLayout/LoginModal';
 
 function App() {
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   function openModal() {
-    setIsOpen(true);
+    setModalIsOpen(true);
   }
 
   function closeModal() {
-    setIsOpen(false);
+    setModalIsOpen(false);
   }
 
   return (
