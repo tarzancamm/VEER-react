@@ -21,9 +21,9 @@ const emailReducer = (prevState, action) => {
 const passwordReducer = (prevState, action) => {
   switch (action.type) {
     case "USER_INPUT":
-      return { value: action.payload, isValid: action.payload.length > 8 };
+      return { value: action.payload, isValid: action.payload.length > 7 };
     case "INPUT_BLUR":
-      return { value: prevState.value, isValid: prevState.value.length > 8 };
+      return { value: prevState.value, isValid: prevState.value.length > 7 };
     default:
       return { value: "", isValid: false };
   }
@@ -35,8 +35,8 @@ const LoginModal = ({ modalState, closeModal }) => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [register, setRegister] = useState(false)
-  // const [loginValid, setLoginValid] = useState(true)
-  // const [registerValid, setRegisterValid] = useState(true)
+  const [loginValid, setLoginValid] = useState(true)
+  const [registerValid, setRegisterValid] = useState(true)
   const navigate = useNavigate()
   const authCtx = useContext(AuthContext)
 
@@ -48,6 +48,8 @@ const LoginModal = ({ modalState, closeModal }) => {
     value: "",
     isValid: true,
   });
+  const { isValid: emailIsValid } = emailState;
+  const { isValid: passwordIsValid } = passwordState;
 
   // Handlers for sending data to useReducer (input & validation)
   const emailChangeHandler = (e) => {
@@ -74,7 +76,6 @@ const LoginModal = ({ modalState, closeModal }) => {
       password: passwordState.value
     }
 
-
     register && axios.post('/register', body)
       .then((res) => {
         authCtx.login(res.data.token, res.data.userId, res.data.exp)
@@ -84,6 +85,7 @@ const LoginModal = ({ modalState, closeModal }) => {
         navigate('/profile')
       })
       .catch((err) => {
+        setRegisterValid(false)
         if (err.response) {
           // Client received error in response
           console.log(err.response.data)
@@ -107,6 +109,7 @@ const LoginModal = ({ modalState, closeModal }) => {
         navigate('/profile')
       })
       .catch((err) => {
+        setLoginValid(false)
         if (err.response) {
           // Client received error in response
           console.log(err.response.data)
@@ -161,11 +164,19 @@ const LoginModal = ({ modalState, closeModal }) => {
         <button onClick={closeModal} className='float-right text-2xl block'><RxCross2 /></button>
         <h3>{register ? 'Sign Up' : "Login"}</h3>
        {register ? <p>Already have an account? <button onClick={() => setRegister(false)}>Login</button></p> : <p>Need an account? <button onClick={() => setRegister(true)}>Sign Up</button></p>}
+       {!loginValid && <p>Incorrect email or password</p>}
+       {!registerValid && <p>Email already in use or invalid email/password</p>}
         <form onSubmit={submitHandler}>
           {register && <input type='text' placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />}
           {register && <input type='text' placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)} />}
-          <input type="text" placeholder="Email" value={emailState.value} onChange={emailChangeHandler} onBlur={validateEmailHandler} />
-          <input type="password" placeholder="Password" value={passwordState.value} onChange={passwordChangeHandler} onBlur={validatePasswordHandler} />
+          <div>
+            {!emailIsValid && <p>Enter a valid email address</p>}
+            <input type="text" placeholder="Email" value={emailState.value} onChange={emailChangeHandler} onBlur={validateEmailHandler} />
+          </div>
+          <div>
+            {!passwordIsValid && <p>Password must be at least 8 characters</p>}
+            <input type="password" placeholder="Password" value={passwordState.value} onChange={passwordChangeHandler} onBlur={validatePasswordHandler} />
+          </div>
           <button>{register ? 'Sign Up' : 'Login'}</button>
         </form>
       </div>
