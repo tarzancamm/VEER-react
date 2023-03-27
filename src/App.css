@@ -56,11 +56,6 @@ table {
 
 /* HomeScreen */
 
-.homescreen {
-  position: relative;
-  top: 5rem;
-}
-
 .ReactModal__Overlay {
   opacity: 0;
   transition: opacity 2000mx ease-in-out;

@@ -18,7 +18,7 @@ const Header = ({openModal}) => {
                 {showMenu ? <RxCross2 /> : <GrMenu />}
             </button>
         </header>
-        <nav className={showMenu ? "absolute h-screen w-64 z-40 bg-white right-0 transition-all ease-in-out duration-300 border-l-2 border-solid border-red flex flex-col gap-4" : "absolute h-screen w-64 z-40 bg-white -right-64 transition-all ease-in-out duration-300"}>
+        <nav className={showMenu ? "absolute h-screen w-64 top-20 z-40 bg-white right-0 transition-all ease-in-out duration-300 border-l-2 border-solid border-red flex flex-col gap-4" : "absolute h-screen w-64 z-40 bg-white -right-64 transition-all ease-in-out duration-300"}>
           <NavLink to="#adventures" className="hover:text-red ml-8 mt-8">
             Adventures
           </NavLink>
