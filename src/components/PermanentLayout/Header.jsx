@@ -33,9 +33,9 @@ const Header = ({openModal}) => {
             </div>
             <p>login / signup</p>
           </button>
-          <div className="flex justify-center">
+          {authCtx.token && <div className="flex justify-center">
             <button onClick={authCtx.logout} className="absolute bottom-32">Logout</button>
-          </div>
+          </div>}
         </nav>
     </Fragment>
   );

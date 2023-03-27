@@ -167,12 +167,12 @@ const LoginModal = ({ modalState, closeModal }) => {
         <div className="mt-4 mb-12 text-center">
           {register ? <p>Already have an account? <button onClick={() => setRegister(false)} className="text-red font-semibold underline cursor-pointer" >Login</button></p> : <p>Need an account? <button onClick={() => setRegister(true)} className="text-red font-medium underline cursor-pointer">Sign Up</button></p>}
         </div>
-       {!loginValid && <p>Incorrect email or password</p>}
-       {!registerValid && <p>Email already in use or invalid email/password</p>}
-        <form onSubmit={submitHandler} className="flex flex-col items-center gap-6">
+       {!loginValid && <p className="text-xs mb-4 text-red">Incorrect email or password</p>}
+       {!registerValid && <p className="text-xs mb-4 text-red">Email already in use or invalid email/password</p>}
+        <form onSubmit={submitHandler} className="flex flex-col items-center gap-6 ml-2">
           {register && <div>
             <label htmlFor="First Name">First Name</label>
-            <input type='text' value={firstName} onChange={(e) => setFirstName(e.target.value)} className="w-80 h-10 mt-2 pl-2 focus:outline-none" />
+            <input type='text' value={firstName} onChange={(e) => setFirstName(e.target.value)} className="w-72 h-10 mt-2 pl-2 focus:outline-none" />
           </div>}
           {register && <div>
             <label htmlFor="Last Name">Last Name</label>

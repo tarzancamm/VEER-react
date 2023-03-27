@@ -8,9 +8,11 @@ const HomeScreen = ({openModal}) => {
   return (
     <div className="h-auto">
       <Header openModal={openModal} />
-      <HowToVeer />
-      <div className='w-screen h-20 bg-green mt-36'></div>
-      <VeerMap id='map' />
+      <main>
+        <HowToVeer />
+        <section className='w-screen h-20 bg-green mt-36'></section>
+        <VeerMap id='map' />
+      </main>
       <Footer />
     </div>
   )
