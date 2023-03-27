@@ -1,5 +1,5 @@
 import React from "react";
-import {GiMustache} from 'react-icons/gi'
+import {GiBatMask} from 'react-icons/gi'
 import {GiAirplane} from 'react-icons/gi'
 
 const HowToVeer = () => {
@@ -8,7 +8,7 @@ const HowToVeer = () => {
       <h1 className="mt-12 text-center font-sans font-medium text-2xl">Find Things To Do In Europe</h1>
       <div className="mt-12 flex flex-row justify-around gap-8">
         <div className="flex flex-col justify-start items-center gap-4 ml-4 text-center">
-            <GiMustache className="text-8xl" />
+            <GiBatMask className="text-8xl" />
             <p className="-mt-6 text-sm border-2 border-solid border-red rounded-3xl bg-red text-white px-2">1</p>
             <p>Create a Free Profile</p>
             <p className="text-xs text-left">You’ll be able to save your favorite adventures and add your own for others to experience.</p>

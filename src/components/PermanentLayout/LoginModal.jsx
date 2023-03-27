@@ -161,7 +161,7 @@ const LoginModal = ({ modalState, closeModal }) => {
       shouldCloseOnOverlayClick={true}
       ariaHideApp={false}
     >
-      <div className="">
+      <div>
         <button onClick={closeModal} className='text-xl absolute right-4 top-4'><RxCross2 /></button>
         <h3 className="mt-8 text-center text-xl font-bold">{register ? 'Sign Up' : "Log in"}</h3>
         <div className="mt-4 mb-12 text-center">

@@ -10,7 +10,7 @@ const HomeScreen = ({openModal}) => {
       <Header openModal={openModal} />
       <HowToVeer />
       <div className='w-screen h-20 bg-green mt-36'></div>
-      <VeerMap />
+      <VeerMap id='map' />
       <Footer />
     </div>
   )
