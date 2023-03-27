@@ -125,7 +125,7 @@ const LoginModal = ({ modalState, closeModal }) => {
       })
   }
 
-
+//F8F3E4
   const modalStyles = {
     overlay: {
       zIndex: "100",
@@ -138,12 +138,13 @@ const LoginModal = ({ modalState, closeModal }) => {
       bottom: "auto",
       border: '1px',
       borderRadius: '10px',
-      background: '#F8F3E4',
+      background: '#F7F1DF',
       overflow: 'auto',
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       height: '85%',
       width: '85%',
+      fontFamily: 'Kantumruy Pro',
     },
   };
 
@@ -161,23 +162,33 @@ const LoginModal = ({ modalState, closeModal }) => {
       ariaHideApp={false}
     >
       <div className="">
-        <button onClick={closeModal} className='float-right text-2xl block'><RxCross2 /></button>
-        <h3>{register ? 'Sign Up' : "Login"}</h3>
-       {register ? <p>Already have an account? <button onClick={() => setRegister(false)}>Login</button></p> : <p>Need an account? <button onClick={() => setRegister(true)}>Sign Up</button></p>}
+        <button onClick={closeModal} className='text-xl absolute right-4 top-4'><RxCross2 /></button>
+        <h3 className="mt-8 text-center text-lg font-bold">{register ? 'Sign Up' : "Log in"}</h3>
+        <div className="mt-4 mb-12 text-center">
+          {register ? <p>Already have an account? <button onClick={() => setRegister(false)} className="text-red font-bold underline cursor-pointer" >Login</button></p> : <p>Need an account? <button onClick={() => setRegister(true)} className="text-red font-bold underline cursor-pointer">Sign Up</button></p>}
+        </div>
        {!loginValid && <p>Incorrect email or password</p>}
        {!registerValid && <p>Email already in use or invalid email/password</p>}
-        <form onSubmit={submitHandler}>
-          {register && <input type='text' placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />}
-          {register && <input type='text' placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)} />}
+        <form onSubmit={submitHandler} className="flex flex-col items-center gap-6">
+          {register && <div>
+            <label htmlFor="First Name">First Name</label>
+            <input type='text' value={firstName} onChange={(e) => setFirstName(e.target.value)} className="w-80 h-10 mt-2 pl-2 focus:outline-none" />
+          </div>}
+          {register && <div>
+            <label htmlFor="Last Name">Last Name</label>
+            <input type='text' value={lastName} onChange={(e) => setLastName(e.target.value)} className="w-72 h-10 mt-2 pl-2 focus:outline-none" />
+          </div>}
           <div>
-            {!emailIsValid && <p>Enter a valid email address</p>}
-            <input type="text" placeholder="Email" value={emailState.value} onChange={emailChangeHandler} onBlur={validateEmailHandler} />
+            <label htmlFor="Email Address">Email Address</label>
+            <input type="text" value={emailState.value} onChange={emailChangeHandler} onBlur={validateEmailHandler} className={emailIsValid ? "w-72 h-10 mt-2 pl-2 focus:outline-none" : "w-72 h-10 mt-2 pl-2 focus:outline-none border border-solid border-red"} />
+            {!emailIsValid && <p className="text-xs italic">*Enter a valid email address</p>}
           </div>
           <div>
-            {!passwordIsValid && <p>Password must be at least 8 characters</p>}
-            <input type="password" placeholder="Password" value={passwordState.value} onChange={passwordChangeHandler} onBlur={validatePasswordHandler} />
+            <label htmlFor="Passsord">Password</label>
+            <input type="password" value={passwordState.value} onChange={passwordChangeHandler} onBlur={validatePasswordHandler} className={passwordIsValid ? "w-72 h-10 mt-2 pl-2 focus:outline-none" : "w-72 h-10 mt-2 pl-2 focus:outline-none border border-solid border-red"} />
+            {!passwordIsValid && <p className="text-xs italic">*Password must be at least 8 characters</p>}
           </div>
-          <button>{register ? 'Sign Up' : 'Login'}</button>
+          <button className="mt-4 text-white font-bold bg-red w-28 h-10 rounded-3xl">{register ? 'Sign Up' : 'Login'}</button>
         </form>
       </div>
     </Modal>
