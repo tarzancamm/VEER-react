@@ -15,7 +15,7 @@ const Header = ({openModal}) => {
   return (
     <Fragment>
         <header className="fixed top-0 left-0 h-20 w-screen z-40 border-b-2 border-solid border-red flex flex-row items-center justify-between">
-            <img src={VEERlogo} alt="veer logo" className="h-16 w-auto ml-4" />
+            <NavLink to="/"><img src={VEERlogo} alt="veer logo" className="h-16 w-auto ml-4" /></NavLink>
             <button onClick={() => setShowMenu(!showMenu)} className='text-2xl mr-8'>
                 {showMenu ? <RxCross2 /> : <GrMenu />}
             </button>

@@ -52,6 +52,7 @@ module.exports = {
         res.status(200).send({
           email: newUser.dataValues.emailAddress,
           userId: newUser.dataValues.userId,
+          firstName: newUser.dataValues.firstName,
           token: token,
           exp: exp,
         });
@@ -88,6 +89,7 @@ module.exports = {
           res.status(200).send({
             email: foundUser.dataValues.emailAddress,
             userId: foundUser.dataValues.userId,
+            firstName: foundUser.dataValues.firstName,
             token: token,
             exp: exp,
           });

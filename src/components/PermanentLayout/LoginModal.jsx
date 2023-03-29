@@ -78,7 +78,7 @@ const LoginModal = ({ modalState, closeModal }) => {
 
     register && axios.post('/register', body)
       .then((res) => {
-        authCtx.login(res.data.token, res.data.userId, res.data.exp)
+        authCtx.login(res.data.token, res.data.userId, res.data.exp, res.data.firstName)
       })
       .then(() => {
         closeModal()
@@ -102,7 +102,7 @@ const LoginModal = ({ modalState, closeModal }) => {
 
     !register && axios.post('/login', body)
       .then((res) => {
-        authCtx.login(res.data.token, res.data.userId, res.data.exp)
+        authCtx.login(res.data.token, res.data.userId, res.data.exp, res.data.firstName)
       })
       .then(() => {
         closeModal()
@@ -125,7 +125,6 @@ const LoginModal = ({ modalState, closeModal }) => {
       })
   }
 
-//F8F3E4
   const modalStyles = {
     overlay: {
       zIndex: "100",

@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import './App.css';
 import {Routes, Route, Navigate} from 'react-router-dom'
-
 import HomeScreen from './screens/HomeScreen'
 import ProfileScreen from './screens/ProfileScreen';
 import LoginModal from './components/PermanentLayout/LoginModal';
@@ -23,7 +22,7 @@ function App() {
       <Routes>
         <Route path='*' element={<Navigate to='/' />} />
         <Route path='/' element={<HomeScreen openModal={openModal} />} />
-        <Route path='/profile' element={<ProfileScreen />} />
+        <Route path='/profile' element={<ProfileScreen openModal={openModal} />} />
       </Routes>
     </div>
   );
