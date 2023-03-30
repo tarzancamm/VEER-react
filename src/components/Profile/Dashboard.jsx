@@ -5,6 +5,7 @@ import { GiAirBalloon } from "react-icons/gi";
 const Dashboard = () => {
   const authCtx = useContext(AuthContext);
   let name = authCtx.firstName;
+  let year = authCtx.createdAt;
 
   return (
     <section className="h-[35rem]">
@@ -13,7 +14,7 @@ const Dashboard = () => {
             <GiAirBalloon className="text-6xl" />
             <div className="flex flex-col items-center">
               <p className="text-2xl font-medium">{name}</p>
-              <p className="text-sm">Veering into adventures since</p>
+              <p className="text-sm">Veering into adventures since {year}</p>
             </div>
             <button className="bg-red rounded-3xl text-white text-sm font-semibold w-44 h-9">
               Add My Adventure

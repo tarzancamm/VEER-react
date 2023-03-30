@@ -17,13 +17,13 @@ module.exports = {
       const { firstName, lastName, email, password } = req.body;
 
       let foundUser = await User.findOne({ where: { emailAddress: email } }); // Checks if user already exists
-      let validPassword = password.length > 6
+      let validPassword = password.length > 7
       let validEmail = email.includes('@')
 
       if (foundUser) {
         res.status(400).send("User already exists");
       } else if (!validPassword) {
-        res.status(400).send("Password has fewer than 7 characters")
+        res.status(400).send("Password has fewer than 8 characters")
       } else if (!validEmail) {
         res.status(400).send("Invalid email address")
       } else {
@@ -48,6 +48,12 @@ module.exports = {
 
         const exp = Date.now() + 86400000; // Sets expiration to 24 hrs
 
+        // Gets month and year user was created
+        const options = {month: "long"}
+        let month = new Intl.DateTimeFormat("en-US", options).format(newUser.dataValues.createdAt) 
+        let year = newUser.dataValues.createdAt.getFullYear()
+        let date = month + ' ' + year
+
         // Sends back data to be used to login new user
         res.status(200).send({
           email: newUser.dataValues.emailAddress,
@@ -55,6 +61,7 @@ module.exports = {
           firstName: newUser.dataValues.firstName,
           token: token,
           exp: exp,
+          createdAt: date,
         });
       }
     } catch (err) {
@@ -85,6 +92,12 @@ module.exports = {
 
           const exp = Date.now() + 86400000; // Sets expiration to 24 hrs
 
+          // Gets month and year user was created
+          const options = {month: "long"}
+          let month = new Intl.DateTimeFormat("en-US", options).format(foundUser.dataValues.createdAt) 
+          let year = foundUser.dataValues.createdAt.getFullYear()
+          let date = month + ' ' + year
+
           // Sends data to be used in login handler on frontend
           res.status(200).send({
             email: foundUser.dataValues.emailAddress,
@@ -92,6 +105,7 @@ module.exports = {
             firstName: foundUser.dataValues.firstName,
             token: token,
             exp: exp,
+            createdAt: date,
           });
         } else {
           console.log("Incorrect password");

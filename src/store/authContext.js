@@ -5,6 +5,7 @@ const defaultValues = {
     userId: null,
     token: "",
     firstName: "",
+    createdAt: "",
     login: () => {},
     logout: () => {}
 }
@@ -25,7 +26,8 @@ const calculateRemainingTime = (exp) => {
     const localToken = localStorage.getItem("token");
     const localUserId = localStorage.getItem("userId");
     const localExp = localStorage.getItem("exp");
-    const localFirstName = localStorage.getItem('firstName')
+    const localFirstName = localStorage.getItem('firstName');
+    const localCreatedAt = localStorage.getItem('createdAt');
   
     const remainingExpTime = calculateRemainingTime(localExp);
   
@@ -35,6 +37,7 @@ const calculateRemainingTime = (exp) => {
       localStorage.removeItem("userId");
       localStorage.removeItem("exp");
       localStorage.removeItem("firstName");
+      localStorage.removeItem("createdAt");
       return null;
     }
   
@@ -43,6 +46,7 @@ const calculateRemainingTime = (exp) => {
       userId: +localUserId,
       firstname: localFirstName,
       duration: remainingExpTime,
+      createdAt: localCreatedAt,
     };
   };
 
@@ -57,40 +61,49 @@ export const AuthContextProvider = (props) => {
     let initialToken;
     let initialId;
     let initialFirstName;
+    let initialCreatedAt;
   
     if (localData) {
       initialToken = localData.token;
       initialId = localData.userId;
       initialFirstName = localData.firstname;
+      initialCreatedAt = localData.createdAt;
     }
   
     //Set initial state to initial Local Data
     const [token, setToken] = useState(initialToken);
     const [userId, setUserId] = useState(initialId);
     const [firstName, setFirstName] = useState(initialFirstName);
+    const [createdAt, setCreatedAt] = useState(initialCreatedAt)
   
     //Login and logout functionality (sets or clears localStorage data)
     const logoutHandler = useCallback(() => {
       setToken(null);
       setUserId(null);
+      setFirstName(null);
+      setCreatedAt(null);
       localStorage.removeItem("token");
       localStorage.removeItem("userId");
       localStorage.removeItem("exp");
       localStorage.removeItem("firstName");
+      localStorage.removeItem("createdAt")
   
       if (logoutTimer) {
         clearTimeout(logoutTimer);
       }
     }, []);
   
-    const loginHandler = (token, userId, exp, firstName) => {
+    const loginHandler = (token, userId, exp, firstName, createdAt) => {
+        console.log(createdAt)
       setToken(token);
       setUserId(userId);
       setFirstName(firstName);
+      setCreatedAt(createdAt)
       localStorage.setItem("token", token);
       localStorage.setItem("userId", userId);
       localStorage.setItem("exp", exp);
       localStorage.setItem("firstName", firstName)
+      localStorage.setItem("createdAt", createdAt)
   
       const remainingExpTime = calculateRemainingTime(exp);
   
@@ -109,6 +122,7 @@ export const AuthContextProvider = (props) => {
         userId: userId,
         token: token,
         firstName: firstName,
+        createdAt: createdAt,
         login: loginHandler,
         logout: logoutHandler
     }
