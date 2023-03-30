@@ -8,7 +8,9 @@ import AuthContext from "../../store/authContext";
 
 const Header = ({openModal}) => {
   const [showMenu, setShowMenu] = useState(false);
-  const authCtx = useContext(AuthContext)
+  const {logout} = useContext(AuthContext)
+  const {token} = useContext(AuthContext)
+  const {firstName} = useContext(AuthContext)
 
   const closeMenuHandler = () => setShowMenu(false);
 
@@ -24,17 +26,14 @@ const Header = ({openModal}) => {
           <NavLink to="#map" onClick={closeMenuHandler} className="hover:text-red ml-8 mt-8">
             Adventures
           </NavLink>
-          <NavLink to="/profile" onClick={closeMenuHandler} className="hover:text-red ml-8">
-            Profile
-          </NavLink>
           <button className="ml-8 flex" onClick={openModal}>
             <div className="pr-2">
                 <CgProfile />
             </div>
-            <p>login / signup</p>
+            {token ? <NavLink to="/profile" onClick={closeMenuHandler}>{firstName}</NavLink> : <p>login / signup</p>}
           </button>
-          {authCtx.token && <div className="flex justify-center">
-            <button onClick={authCtx.logout} className="absolute bottom-32">Logout</button>
+          {token && <div className="flex justify-center">
+            <button onClick={logout} className="absolute bottom-32">Logout</button>
           </div>}
         </nav>
     </Fragment>
