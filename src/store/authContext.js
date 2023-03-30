@@ -86,7 +86,7 @@ export const AuthContextProvider = (props) => {
       localStorage.removeItem("userId");
       localStorage.removeItem("exp");
       localStorage.removeItem("firstName");
-      localStorage.removeItem("createdAt")
+      localStorage.removeItem("createdAt");
   
       if (logoutTimer) {
         clearTimeout(logoutTimer);
@@ -102,8 +102,8 @@ export const AuthContextProvider = (props) => {
       localStorage.setItem("token", token);
       localStorage.setItem("userId", userId);
       localStorage.setItem("exp", exp);
-      localStorage.setItem("firstName", firstName)
-      localStorage.setItem("createdAt", createdAt)
+      localStorage.setItem("firstName", firstName);
+      localStorage.setItem("createdAt", createdAt);
   
       const remainingExpTime = calculateRemainingTime(exp);
   
@@ -124,7 +124,7 @@ export const AuthContextProvider = (props) => {
         firstName: firstName,
         createdAt: createdAt,
         login: loginHandler,
-        logout: logoutHandler
+        logout: logoutHandler,
     }
 
     return (
