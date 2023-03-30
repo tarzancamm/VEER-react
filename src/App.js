@@ -1,12 +1,14 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import './App.css';
 import {Routes, Route, Navigate} from 'react-router-dom'
 import HomeScreen from './screens/HomeScreen'
 import ProfileScreen from './screens/ProfileScreen';
 import LoginModal from './components/PermanentLayout/LoginModal';
+import AuthContext from './store/authContext';
 
 function App() {
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const {token} = useContext(AuthContext)
 
   function openModal() {
     setModalIsOpen(true);
@@ -22,7 +24,7 @@ function App() {
       <Routes>
         <Route path='*' element={<Navigate to='/' />} />
         <Route path='/' element={<HomeScreen openModal={openModal} />} />
-        <Route path='/profile' element={<ProfileScreen openModal={openModal} />} />
+        <Route path='/profile' element={token ? <ProfileScreen openModal={openModal} /> : <Navigate to="/" />} />
       </Routes>
     </div>
   );
