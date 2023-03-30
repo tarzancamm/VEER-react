@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import Header from '../components/PermanentLayout/Header'
 import HowToVeer from '../components/Home/HowToVeer'
 import VeerMap from '../components/Home/VeerMap'
@@ -6,7 +6,7 @@ import Footer from '../components/PermanentLayout/Footer'
 
 const HomeScreen = ({openModal}) => {
   return (
-    <div className="h-auto">
+    <Fragment className="relative min-h-full min-w-scren">
       <Header openModal={openModal} />
       <main>
         <HowToVeer />
@@ -14,7 +14,7 @@ const HomeScreen = ({openModal}) => {
         <VeerMap id='map' />
       </main>
       <Footer />
-    </div>
+    </Fragment>
   )
 }
 

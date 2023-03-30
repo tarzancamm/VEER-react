@@ -1,24 +1,38 @@
-import React, {Fragment, useContext} from 'react'
-import Header from '../components/PermanentLayout/Header'
-import AuthContext from '../store/authContext'
+import React, { Fragment, useState } from "react";
+import Header from "../components/PermanentLayout/Header";
+import Dashboard from "../components/Profile/Dashboard";
+import Footer from "../components/PermanentLayout/Footer";
 
-const ProfileScreen = ({openModal}) => {
-    const authCtx = useContext(AuthContext)
-    let name = authCtx.firstName
+const ProfileScreen = ({ openModal }) => {
+    const [collectionsOn, setCollectionsOn] = useState(true)
+    const [myAdventuresOn, setMyAdventuresOn] = useState(false)
 
-    return (
-        <Fragment>
-            <Header openModal={openModal} />
-            <section className='relative top-20'>
-                <div className='flex flex-col justify-center items-center gap-8 h-48'>
-                    <p className='text-3xl font-medium'>Welcome, {name}</p>
-                    <button className='bg-red rounded-3xl text-white font-semibold w-48 h-10'>Add My Adventure</button> 
+    const collectionsOffHandler = () => {
+        setCollectionsOn(false);
+        setMyAdventuresOn(true)
+    }
 
-                </div>
+    const collectionsOnHandler = () => {
+        setCollectionsOn(true)
+        setMyAdventuresOn(false)
+    }
 
-            </section>
-        </Fragment>
-    )
-}
 
-export default ProfileScreen
+  return (
+    <Fragment className="relative min-h-full min-w-screen">
+      <Header openModal={openModal} />
+      <main className="bg-tan relative top-20">
+        <Dashboard />
+        <div className="h-[20rem] mt-4">
+            <div className="flex flex-row justify-start gap-6 border-b-2 border-solid border-red pb-2 mx-8">
+                <button onClick={collectionsOnHandler} className={collectionsOn ? "font-medium" : "font-normal"}>Collections</button>
+                <button onClick={collectionsOffHandler} className={myAdventuresOn ? "font-medium" : "font-normal"}>My Adventures</button>
+            </div>
+        </div>
+      </main>
+      <Footer />
+    </Fragment>
+  );
+};
+
+export default ProfileScreen;
