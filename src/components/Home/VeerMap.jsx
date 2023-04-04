@@ -46,7 +46,7 @@ const VeerMap = () => {
         center={[40.767234, -111.890996]}
         zoom={10}
         scrollWheelZoom={false}
-        style={{ width: "100vw", height: "85vh", zIndex: "30" }}
+        style={{ width: "100vw", height: "82vh", zIndex: "30" }}
         bounds={boundaries}
       >
         <TileLayer
