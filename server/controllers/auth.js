@@ -16,7 +16,7 @@ module.exports = {
     try {
       const { firstName, lastName, email, password } = req.body;
 
-      let foundUser = await User.findOne({ where: { emailAddress: email } }); // Checks if user already exists
+      let foundUser = await User.findOne({ where: { email_address: email } }); // Checks if user already exists
       let validPassword = password.length > 7
       let validEmail = email.includes('@')
 
@@ -32,15 +32,15 @@ module.exports = {
 
         //Creates new user with req body and hashed password
         const newUser = await User.create({
-          firstName,
-          lastName,
-          emailAddress: email,
-          hashedPass: hash,
+          first_name: firstName,
+          last_name: lastName,
+          email_address: email,
+          hashed_pass: hash,
         });
 
         // Creates token using createToken handler
         const token = createToken(
-          newUser.dataValues.emailAddress,
+          newUser.dataValues.email_address,
           newUser.dataValues.id
         );
         console.log(newUser);
@@ -56,9 +56,9 @@ module.exports = {
 
         // Sends back data to be used to login new user
         res.status(200).send({
-          email: newUser.dataValues.emailAddress,
-          userId: newUser.dataValues.userId,
-          firstName: newUser.dataValues.firstName,
+          email: newUser.dataValues.email_address,
+          userId: newUser.dataValues.id,
+          firstName: newUser.dataValues.first_name,
           token: token,
           exp: exp,
           createdAt: date,
@@ -75,18 +75,20 @@ module.exports = {
     try {
       const { email, password } = req.body; // Desctructure request body
 
-      let foundUser = await User.findOne({ where: { emailAddress: email } }); // Finds user in db
+      let foundUser = await User.findOne({ where: { email_address: email } }); // Finds user in db
+      console.log(email)
+      console.log(foundUser)
 
       // userAuthenticated compares passwords and returns boolean
       if (foundUser) {
         const userAuthenticated = bcrypt.compareSync(
           password,
-          foundUser.hashedPass
+          foundUser.hashed_pass
         );
         // Creates token IF user is authenticated
         if (userAuthenticated) {
           const token = createToken(
-            foundUser.dataValues.emailAddress,
+            foundUser.dataValues.email_address,
             foundUser.dataValues.id
           );
 
@@ -100,9 +102,9 @@ module.exports = {
 
           // Sends data to be used in login handler on frontend
           res.status(200).send({
-            email: foundUser.dataValues.emailAddress,
-            userId: foundUser.dataValues.userId,
-            firstName: foundUser.dataValues.firstName,
+            email: foundUser.dataValues.email_address,
+            userId: foundUser.dataValues.id,
+            firstName: foundUser.dataValues.first_name,
             token: token,
             exp: exp,
             createdAt: date,

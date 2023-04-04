@@ -3,60 +3,51 @@ const db = require('./database')
 
 module.exports = {
     User: db.define('user', {
-        userId: {
+        id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             allowNull: false,
             autoIncrement: true,
         },
-        firstName: {
+        first_name: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        lastName: {
+        last_name: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        emailAddress: {
+        email_address: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        hashedPass: {
+        hashed_pass: {
             type: DataTypes.STRING,
             allowNull: false
         }
     }),
 
     Adventure: db.define('adventure', {
-        adventureId: {
+        id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             allowNull: false,
             autoIncrement: true
         },
-        adventureName: {
+        name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        adventureCost: {
+        cost: {
             type: DataTypes.FLOAT,
             allowNull: true,
         },
-        adventureDescription: {
+        description: {
             type: DataTypes.STRING(500),
-        }
-    }),
-
-    Country: db.define('country', {
-        countryId: {
-            type: DataTypes.INTEGER,
-            primaryKey: true,
-            allowNull: false,
-            autoIncrement: true
         },
-        countryName: {
-            type: DataTypes.STRING,
-            allowNull: false
+        coordinates: {
+            type: DataTypes.ARRAY(DataTypes.STRING),
+            allowNull: false,
         }
     })
 }

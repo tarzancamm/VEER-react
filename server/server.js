@@ -7,13 +7,14 @@ const db = require('./util/database')
 const {seedCountries} = require('./util/seed')
 
 // Models
-const {User, Adventure, Country} = require('./util/models')
+const {User, Adventure} = require('./util/models')
 
 // Store express in variable
 const server = express()
 
 // Controller functions
 const {login, register} = require('./controllers/auth')
+const {getAllAdventures} = require('./controllers/adventures')
  
 // Middleware to run on every endpoint
 server.use(express.json()) // Parses incoming JSON requests and puts the parsed data in req.body
@@ -22,14 +23,13 @@ server.use(cors()) // Client & Server can run on seperate ports
 // Sequelize Associations
 User.hasMany(Adventure)
 Adventure.belongsTo(User)
-Country.hasMany(Adventure)
-Adventure.belongsTo(Country)
 
 // Endpoints
 server.post('/register', register)
 server.post('/login', login)
+server.get('/adventures', getAllAdventures)
 
-// Sync db and run server. { force: true } in db.sync to drop all tables
+// Sync db and run server. { force: true } in db.sync to drop all tables. { alter: true} to update tables.
 db.sync()
     // .then(() => seedCountries())
     .then(() => {

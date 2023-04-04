@@ -12,3 +12,18 @@ Features
 
 - Authentication Screen
     - Login / Create Profile
+
+
+
+
+removed from package.json when figuring out leaflet
+removed from below browserslist
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+
+removed from browserslist
+    {
+        "production": 

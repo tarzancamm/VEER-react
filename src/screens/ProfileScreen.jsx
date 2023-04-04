@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import Header from "../components/PermanentLayout/Header";
 import Dashboard from "../components/Profile/Dashboard";
 import Footer from "../components/PermanentLayout/Footer";
@@ -19,7 +19,7 @@ const ProfileScreen = ({ openModal }) => {
 
 
   return (
-    <Fragment className="relative min-h-full min-w-screen">
+    <div className="relative min-h-full min-w-screen">
       <Header openModal={openModal} />
       <main className="bg-tan relative top-20">
         <Dashboard />
@@ -31,7 +31,7 @@ const ProfileScreen = ({ openModal }) => {
         </div>
       </main>
       <Footer />
-    </Fragment>
+    </div>
   );
 };
 
