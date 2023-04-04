@@ -141,8 +141,8 @@ const LoginModal = ({ modalState, closeModal }) => {
       overflow: 'auto',
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
-      height: '85%',
-      width: '85%',
+      height: '85vh',
+      width: '85vw',
       fontFamily: 'Kantumruy Pro',
     },
   };

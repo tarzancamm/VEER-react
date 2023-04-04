@@ -58,7 +58,7 @@ table {
 
 .ReactModal__Overlay {
   opacity: 0;
-  transition: opacity 2000mx ease-in-out;
+  transition: opacity 250ms ease-in-out;
 }
 
 .ReactModal__Overlay--after-open{
@@ -67,4 +67,10 @@ table {
 
 .ReactModal__Overlay--before-close{
   opacity: 0;
+}
+
+.ReactModal__Body--open,
+.ReactModal__Html--open
+{
+	overflow: hidden;
 }

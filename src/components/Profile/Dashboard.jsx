@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import AuthContext from "../../store/authContext";
 import { GiAirBalloon } from "react-icons/gi";
 
-const Dashboard = () => {
+const Dashboard = ({openAdventureModal}) => {
   const authCtx = useContext(AuthContext);
   let name = authCtx.firstName;
   let year = authCtx.createdAt;
@@ -16,7 +16,7 @@ const Dashboard = () => {
               <p className="text-2xl font-medium">{name}</p>
               <p className="text-sm">Adventurer since {year}</p>
             </div>
-            <button className="bg-red rounded-3xl text-white text-sm font-semibold w-44 h-9">
+            <button onClick={openAdventureModal} className="bg-red rounded-3xl text-white text-sm font-semibold w-44 h-9">
               Add My Adventure
             </button>
           </div>
