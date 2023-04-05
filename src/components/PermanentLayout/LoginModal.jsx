@@ -168,26 +168,28 @@ const LoginModal = ({ modalState, closeModal }) => {
         </div>
        {!loginValid && <p className="text-xs mb-4 text-red">Incorrect email or password</p>}
        {!registerValid && <p className="text-xs mb-4 text-red">Email already in use or invalid email/password</p>}
-        <form onSubmit={submitHandler} className="flex flex-col items-center gap-6 ml-2">
-          {register && <div>
+        <form onSubmit={submitHandler} className="flex flex-col gap-6">
+          {register && <div className="flex flex-col">
             <label htmlFor="First Name">First Name</label>
-            <input type='text' value={firstName} onChange={(e) => setFirstName(e.target.value)} className="w-72 h-10 mt-2 pl-2 focus:outline-none" />
+            <input type='text' value={firstName} onChange={(e) => setFirstName(e.target.value)} className="h-10 mt-2 pl-2 focus:outline-none" />
           </div>}
-          {register && <div>
+          {register && <div className="flex flex-col">
             <label htmlFor="Last Name">Last Name</label>
-            <input type='text' value={lastName} onChange={(e) => setLastName(e.target.value)} className="w-72 h-10 mt-2 pl-2 focus:outline-none" />
+            <input type='text' value={lastName} onChange={(e) => setLastName(e.target.value)} className="h-10 mt-2 pl-2 focus:outline-none" />
           </div>}
-          <div>
+          <div className="flex flex-col">
             <label htmlFor="Email Address">Email Address</label>
-            <input type="text" value={emailState.value} onChange={emailChangeHandler} onBlur={validateEmailHandler} className={emailIsValid ? "w-72 h-10 mt-2 pl-2 focus:outline-none" : "w-72 h-10 mt-2 pl-2 focus:outline-none border border-solid border-red"} />
+            <input type="text" value={emailState.value} onChange={emailChangeHandler} onBlur={validateEmailHandler} className={emailIsValid ? "h-10 mt-2 pl-2 focus:outline-none" : "h-10 mt-2 pl-2 focus:outline-none border border-solid border-red"} />
             {!emailIsValid && <p className="text-xs italic">*Enter a valid email address</p>}
           </div>
-          <div>
+          <div className="flex flex-col">
             <label htmlFor="Passsord">Password</label>
-            <input type="password" value={passwordState.value} onChange={passwordChangeHandler} onBlur={validatePasswordHandler} className={passwordIsValid ? "w-72 h-10 mt-2 pl-2 focus:outline-none" : "w-72 h-10 mt-2 pl-2 focus:outline-none border border-solid border-red"} />
+            <input type="password" value={passwordState.value} onChange={passwordChangeHandler} onBlur={validatePasswordHandler} className={passwordIsValid ? "h-10 mt-2 pl-2 focus:outline-none" : "w-72 h-10 mt-2 pl-2 focus:outline-none border border-solid border-red"} />
             {!passwordIsValid && <p className="text-xs italic">*Password must be at least 8 characters</p>}
           </div>
-          <button className="mt-4 text-white font-semibold bg-red w-28 h-10 rounded-3xl">{register ? 'Sign Up' : 'Login'}</button>
+          <div className="flex justify-center">
+            <button className="mt-4 text-white font-semibold bg-red w-28 h-10 rounded-3xl">{register ? 'Sign Up' : 'Login'}</button>
+          </div>
         </form>
       </div>
     </Modal>

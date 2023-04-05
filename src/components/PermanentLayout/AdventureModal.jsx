@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import Modal from "react-modal";
 import { RxCross2 } from "react-icons/rx";
 
@@ -43,6 +43,10 @@ const AdventureModal = ({ modalState, closeModal }) => {
         <button onClick={closeModal} className="text-xl absolute right-4 top-4">
           <RxCross2 />
         </button>
+        <div className="flex flex-col mt-8">
+          <label htmlFor="adventurename">Adventure Title</label>
+          <input type="text" className="h-10 mt-2 pl-2 focus:outline-none" />
+        </div>
       </div>
     </Modal>
   );
