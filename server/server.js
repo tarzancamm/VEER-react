@@ -14,7 +14,7 @@ const server = express()
 
 // Controller functions
 const {login, register} = require('./controllers/auth')
-const {getAllAdventures} = require('./controllers/adventures')
+const {getAllAdventures, addAdventure} = require('./controllers/adventures')
  
 // Middleware to run on every endpoint
 server.use(express.json()) // Parses incoming JSON requests and puts the parsed data in req.body
@@ -28,6 +28,7 @@ Adventure.belongsTo(User)
 server.post('/register', register)
 server.post('/login', login)
 server.get('/adventures', getAllAdventures)
+server.post('/add-adventure', addAdventure)
 
 // Sync db and run server. { force: true } in db.sync to drop all tables. { alter: true} to update tables.
 db.sync()

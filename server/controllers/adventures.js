@@ -11,5 +11,13 @@ module.exports = {
         } catch {
 
         }
+    },
+
+    addAdventure: async (req, res) => {
+        try {
+
+        } catch {
+            
+        }
     }
 }
