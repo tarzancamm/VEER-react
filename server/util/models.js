@@ -39,7 +39,7 @@ module.exports = {
             allowNull: false,
         },
         cost: {
-            type: DataTypes.FLOAT,
+            type: DataTypes.STRING,
             allowNull: true,
         },
         description: {

@@ -5,7 +5,7 @@ const { JWT_SECRET_KEY } = process.env;
 module.exports = {
   // Middleware that receives request and at the end will send user to next middleware with "next"
   isAuthenticated: (req, res, next) => {
-    const headerToken = req.get("Authorization");
+    const headerToken = req.get("authorization");
 
     // If there is no header token, response will be sent back with error code
     if (!headerToken) {
