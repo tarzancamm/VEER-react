@@ -106,8 +106,8 @@ const AdventureModal = ({ modalState, closeModal }) => {
         </button>
         <div className="mt-10 flex flex-row justify-around">
           <div>
-            <h3 className="font-semibold">What Makes For A Good Adventure?</h3>
-            <div className="flex flex-row justify-between">
+            <h3 className="font-semibold text-lg">What Makes For A Good Adventure?</h3>
+            <div className="flex flex-row justify-between mx-2">
               <ul className="text-xs mt-2 list-disc ml-4">
                 <li className="mb-1">Little Known</li>
                 <li>Off The Wall</li>
