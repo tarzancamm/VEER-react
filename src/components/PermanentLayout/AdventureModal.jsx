@@ -24,13 +24,13 @@ const AdventureModal = ({ modalState, closeModal }) => {
       }
 
       axios
-        .get('/add-adventure', body, {
+        .post('/add-adventure', body, {
           headers: {
             authorization: authCtx.token
         }
         })
-        .then((res) => {
-          console.log(res)
+        .then(() => {
+          console.log("Adventure successfully added")
         })
         .catch((err) => {
           if (err.response) {

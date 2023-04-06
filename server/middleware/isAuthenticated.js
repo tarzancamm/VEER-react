@@ -1,6 +1,6 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
-const { SECRET } = process.env;
+const { JWT_SECRET_KEY } = process.env;
 
 module.exports = {
   // Middleware that receives request and at the end will send user to next middleware with "next"
@@ -16,7 +16,7 @@ module.exports = {
     let token;
 
     try {
-      token = jwt.verify(headerToken, SECRET); // Verify incoming tokens
+      token = jwt.verify(headerToken, JWT_SECRET_KEY); // Verify incoming tokens
     } catch (err) {
       err.statusCode = 500;
       throw err;
@@ -29,6 +29,7 @@ module.exports = {
       throw error;
     }
 
+    console.log("User auth verified")
     next(); // Once token is verified, request will move to next middleware function
   },
 };

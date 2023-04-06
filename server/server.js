@@ -29,7 +29,7 @@ Adventure.belongsTo(User)
 server.post('/register', register)
 server.post('/login', login)
 server.get('/adventures', getAllAdventures)
-server.post('/add-adventure', isAuthenticated ,addAdventure)
+server.post('/add-adventure', isAuthenticated, addAdventure)
 
 // Sync db and run server. { force: true } in db.sync to drop all tables. { alter: true} to update tables.
 db.sync()
