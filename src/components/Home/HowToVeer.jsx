@@ -16,8 +16,8 @@ const HowToVeer = () => {
         <div className="flex flex-col justify-start items-center gap-4 text-center w-4/5">
             <GiAirplane className="text-8xl" />
             <p className="-mt-2 text-sm border-2 border-solid border-red rounded-full bg-red text-white px-2">2</p>
-            <p>VEER Into An Adventure</p>
-            <p className="text-xs text-center w-4/5">Click a marker on the map below to view the adventure.</p>
+            <p>Veer Into An Adventure</p>
+            <p className="text-xs text-center w-4/5">Click the markers on the map below to find adventures.</p>
         </div>
       </div>
     </div>

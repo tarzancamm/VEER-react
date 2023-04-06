@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { Icon } from "leaflet";
 // import "leaflet/dist/leaflet.css";
 import testData from "../../data/test";
 import axios from "axios";
@@ -9,6 +10,11 @@ const VeerMap = () => {
     [41.97724, -114.016217],
     [37.002624, -109.052507],
   ];
+
+  let hotAirBalloon = new Icon({
+    iconUrl: "/hot-air-balloon.png",
+    iconSize: [25, 25],
+  });
 
   const getAllAdventures = () => {
     axios
@@ -40,7 +46,7 @@ const VeerMap = () => {
   return (
     <Fragment>
       <h2 className="mt-16 mb-16 text-center text-2xl font-medium">
-        VEER Into An Adventure
+        Veer Into An Adventure
       </h2>
       <MapContainer
         center={[40.767234, -111.890996]}
@@ -54,7 +60,11 @@ const VeerMap = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {testData.adventures.map((adventure) => (
-          <Marker key={adventure.id} position={adventure.coordinates}>
+          <Marker
+            key={adventure.id}
+            position={adventure.coordinates}
+            icon={hotAirBalloon}
+          >
             <Popup>
               <div>
                 <h3 className="text-base">{adventure.name}</h3>

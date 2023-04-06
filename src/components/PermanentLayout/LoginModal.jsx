@@ -108,6 +108,7 @@ const LoginModal = ({ modalState, closeModal }) => {
       .then(() => {
         closeModal()
         navigate('/profile')
+        window.scrollTo(0, 0);
       })
       .catch((err) => {
         setLoginValid(false)

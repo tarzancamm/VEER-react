@@ -26,6 +26,7 @@
     "react-scripts": "5.0.1",
     "sequelize": "^6.29.3",
     "sweetalert2": "^11.7.3",
+    "sweetalert2-react-content": "^5.0.7",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -59,6 +60,7 @@
     "last 1 safari version"
   ],
   "devDependencies": {
+    "@types/leaflet": "^1.9.3",
     "dotenv": "^16.0.3",
     "tailwindcss": "^3.2.7"
   }
