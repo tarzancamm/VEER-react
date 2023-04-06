@@ -7,7 +7,7 @@ import AuthContext from "../../store/authContext";
 // Props recieved from app.js
 const AdventureModal = ({ modalState, closeModal }) => {
   const [title, setTitle] = useState("")
-  const [cost, setCost] = useState("")
+  const [cost, setCost] = useState("0")
   const [description, setDescription] = useState("")
   const [coordinates, setCoordinates] = useState("")
   const authCtx = useContext(AuthContext)
@@ -107,30 +107,39 @@ const AdventureModal = ({ modalState, closeModal }) => {
           </div>
         </div>
         <form onSubmit={adventureHandler}>
-          <div className="flex flex-col mt-10">
+          <div className="flex flex-col mt-10 pt-10 border-t border-solid border-green">
             <label htmlFor="adventure title">Adventure Title</label>
             <input type="text" className="h-10 mt-2 pl-2 focus:outline-none" onChange={(e) => setTitle(e.target.value)} />
           </div>
-          <div className="flex flex-col mt-4">
-            <label htmlFor="adventure cost">Adventure Cost</label>
-            <input type="text" className="h-10 mt-2 pl-2 focus:outline-none" onChange={(e) => setCost(e.target.value)} />
+          <div className="flex flex-col mt-6">
+            <label htmlFor="adventure cost">Cost</label>
+            <input type="range" min="0" max="50" step="10" value={cost} list="values" className="h-10 pl-2 text-red accent-red focus:outline-none" onChange={(e) => setCost(e.target.value)} />
+            <datalist id="values" className="flex justify-between text-xs">
+              <option value="0" label="Free"></option>
+              <option value="10" label="$10"></option>
+              <option value="20" label="$20"></option>
+              <option value="30" label="$30"></option>
+              <option value="40" label="$40"></option>
+              <option value="50" label="$50+"></option>
+            </datalist>
           </div>
-          <div className="flex flex-col mt-4">
-            <label htmlFor="adventure description">Adventure Description</label>
+          <div className="flex flex-col mt-6">
+            <label htmlFor="adventure description">Description</label>
             <textarea
               type="text"
-              className="h-24 mt-2 px-2 py-2 resize-none leading-5 focus:outline-none"
+              className="h-24 mt-2 px-2 py-2 resize-none leading-5 text-sm focus:outline-none"
+              placeholder="Tell us about the adventure. 500 character limit..."
               maxLength={500}
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>
-          <div className="flex flex-col mt-4">
+          <div className="flex flex-col mt-6">
             <label htmlFor="adventure location">
-              Adventure Coordinates (location)
+              Coordinates (location)
             </label>
             <input type="text" className="h-10 mt-2 pl-2 focus:outline-none" onChange={(e) => setCoordinates(e.target.value)} />
           </div>
-          <div className="flex justify-center mt-10">
+          <div className="flex justify-center mt-12">
             <button className="text-white font-semibold bg-red w-28 h-10 rounded-3xl">
               Submit
             </button>
