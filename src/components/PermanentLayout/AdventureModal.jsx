@@ -31,6 +31,11 @@ const AdventureModal = ({ modalState, closeModal }) => {
         })
         .then(() => {
           console.log("Adventure successfully added")
+          setTitle("")
+          setCost("0")
+          setDescription("")
+          setCoordinates("")
+          closeModal()
         })
         .catch((err) => {
           if (err.response) {
@@ -109,7 +114,7 @@ const AdventureModal = ({ modalState, closeModal }) => {
         <form onSubmit={adventureHandler}>
           <div className="flex flex-col mt-10 pt-10 border-t border-solid border-green">
             <label htmlFor="adventure title">Adventure Title</label>
-            <input type="text" className="h-10 mt-2 pl-2 focus:outline-none" onChange={(e) => setTitle(e.target.value)} />
+            <input type="text" className="h-10 mt-2 pl-2 focus:outline-none" value={title} onChange={(e) => setTitle(e.target.value)} />
           </div>
           <div className="flex flex-col mt-6">
             <label htmlFor="adventure cost">Cost</label>
@@ -130,6 +135,7 @@ const AdventureModal = ({ modalState, closeModal }) => {
               className="h-24 mt-2 px-2 py-2 resize-none leading-5 text-sm focus:outline-none"
               placeholder="Tell us about the adventure. 500 character limit..."
               maxLength={500}
+              value={description}
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>
@@ -137,7 +143,7 @@ const AdventureModal = ({ modalState, closeModal }) => {
             <label htmlFor="adventure location">
               Coordinates (location)
             </label>
-            <input type="text" className="h-10 mt-2 pl-2 focus:outline-none" onChange={(e) => setCoordinates(e.target.value)} />
+            <input type="text" className="h-10 mt-2 pl-2 focus:outline-none" value={coordinates} onChange={(e) => setCoordinates(e.target.value)} />
           </div>
           <div className="flex justify-center mt-12">
             <button className="text-white font-semibold bg-red w-28 h-10 rounded-3xl">

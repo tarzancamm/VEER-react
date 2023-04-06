@@ -23,7 +23,7 @@ module.exports = {
                 coordinates,
                 userId
             })
-            res.status(200)
+            res.sendStatus(200)
         } catch (err) {
             console.log("Error adding new adventure")
             console.log(err)
