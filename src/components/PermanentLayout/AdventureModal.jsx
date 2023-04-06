@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import Modal from "react-modal";
 import { RxCross2 } from "react-icons/rx";
+import Swal from 'sweetalert2'
 import axios from "axios";
 import AuthContext from "../../store/authContext";
 
@@ -36,6 +37,16 @@ const AdventureModal = ({ modalState, closeModal }) => {
           setDescription("")
           setCoordinates("")
           closeModal()
+          Swal.fire({
+            icon: "success",
+            iconColor: "#EE291B",
+            color: "#0E181B",
+            title: "Adventure Added",
+            padding: "2rem 2rem 5rem 2rem",
+            showConfirmButton: false,
+            timer: "2000",
+            timerProgressBar: true,
+          });
         })
         .catch((err) => {
           if (err.response) {

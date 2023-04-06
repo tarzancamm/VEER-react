@@ -16,13 +16,14 @@ module.exports = {
     addAdventure: async (req, res) => {
         try {
             let {title, cost, description, coordinates, userId} = req.body
-            await Adventure.create({
+           let newAdventure = await Adventure.create({
                 name: title,
                 cost,
                 description,
                 coordinates,
                 userId
             })
+            console.log(newAdventure)
             res.sendStatus(200)
         } catch (err) {
             console.log("Error adding new adventure")
