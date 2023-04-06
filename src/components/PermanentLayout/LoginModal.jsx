@@ -4,6 +4,7 @@ import Modal from "react-modal";
 import axios from 'axios'
 import AuthContext from "../../store/authContext";
 import {RxCross2} from 'react-icons/rx';
+import Button from "./Button";
 
 
 // Reducers
@@ -188,7 +189,7 @@ const LoginModal = ({ modalState, closeModal }) => {
             {!passwordIsValid && <p className="text-xs italic">*Password must be at least 8 characters</p>}
           </div>
           <div className="flex justify-center">
-            <button className="mt-4 text-white font-semibold bg-red w-28 h-10 rounded-3xl">{register ? 'Sign Up' : 'Login'}</button>
+            <Button buttonText={register ? 'Sign Up' : 'Login'} />
           </div>
         </form>
       </div>

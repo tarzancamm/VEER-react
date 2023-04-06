@@ -4,6 +4,7 @@ import { RxCross2 } from "react-icons/rx";
 import Swal from 'sweetalert2'
 import axios from "axios";
 import AuthContext from "../../store/authContext";
+import Button from "./Button"
 
 // Props recieved from app.js
 const AdventureModal = ({ modalState, closeModal }) => {
@@ -41,7 +42,7 @@ const AdventureModal = ({ modalState, closeModal }) => {
             icon: "success",
             iconColor: "#EE291B",
             color: "#0E181B",
-            title: "Adventure Added",
+            title: "Adventure Submitted",
             padding: "2rem 2rem 5rem 2rem",
             showConfirmButton: false,
             timer: "2000",
@@ -157,9 +158,7 @@ const AdventureModal = ({ modalState, closeModal }) => {
             <input type="text" className="h-10 mt-2 pl-2 focus:outline-none" value={coordinates} onChange={(e) => setCoordinates(e.target.value)} />
           </div>
           <div className="flex justify-center mt-12">
-            <button className="text-white font-semibold bg-red w-28 h-10 rounded-3xl">
-              Submit
-            </button>
+            <Button buttonText="Submit" />
           </div>
         </form>
       </div>

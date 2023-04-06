@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Button = () => {
+const Button = ({buttonText}) => {
   return (
-    <div>SubmitButton</div>
+    <button className="text-white font-semibold bg-red w-28 h-10 rounded-3xl">{buttonText}</button>
   )
 }
 
