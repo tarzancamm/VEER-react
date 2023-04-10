@@ -1,11 +1,13 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { Icon } from "leaflet";
 // import "leaflet/dist/leaflet.css";
-import testData from "../../data/test";
+// import testData from "../../data/test";
 import axios from "axios";
 
 const VeerMap = () => {
+  const [allAdventures, setAllAdventures] = useState([])
+
   let boundaries = [
     [41.97724, -114.016217],
     [37.002624, -109.052507],
@@ -20,7 +22,8 @@ const VeerMap = () => {
     axios
       .get("/adventures")
       .then((res) => {
-        console.log(res);
+        setAllAdventures(res.data.adventures)
+        // console.log(allAdventures[0].latitude)
       })
       .catch((err) => {
         if (err.response) {
@@ -59,17 +62,17 @@ const VeerMap = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {testData.adventures.map((adventure) => (
+        {allAdventures.map((adventure) => (
           <Marker
             key={adventure.id}
-            position={adventure.coordinates}
+            position={[adventure.latitude, adventure.longitude]}
             icon={hotAirBalloon}
           >
             <Popup>
               <div>
                 <h3 className="text-base">{adventure.name}</h3>
                 <p>{adventure.cost}</p>
-                <p>{adventure.desc}</p>
+                <p>{adventure.description}</p>
               </div>
             </Popup>
           </Marker>

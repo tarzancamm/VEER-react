@@ -32,7 +32,7 @@ server.get('/adventures', getAllAdventures)
 server.post('/add-adventure', isAuthenticated, addAdventure)
 
 // Sync db and run server. { force: true } in db.sync to drop all tables. { alter: true} to update tables.
-db.sync()
+db.sync({alter: true})
     // .then(() => seedCountries())
     .then(() => {
     server.listen(PORT, () => {

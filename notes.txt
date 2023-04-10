@@ -4,6 +4,10 @@ Features
     - Add adventure
     - Collections - fetch saved adventures
     - My Adventures - fetch adventures for user, display adventure title, click adventure title to view/edit adventure
+    - Badges
+        - Added first adventure
+        - Saved first advnenture
+        - etc
 
 - Home Screen Adventure Finder
     - How it works (2 steps)

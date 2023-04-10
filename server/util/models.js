@@ -45,8 +45,12 @@ module.exports = {
         description: {
             type: DataTypes.STRING(500),
         },
-        coordinates: {
-            type: DataTypes.STRING,
+        latitude: {
+            type: DataTypes.FLOAT,
+            allowNull: false,
+        },
+        longitude: {
+            type: DataTypes.FLOAT,
             allowNull: false,
         }
     })

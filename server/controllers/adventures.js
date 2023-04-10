@@ -15,12 +15,13 @@ module.exports = {
 
     addAdventure: async (req, res) => {
         try {
-            let {title, cost, description, coordinates, userId} = req.body
+            let {title, cost, description, latitude, longitude, userId} = req.body
            let newAdventure = await Adventure.create({
                 name: title,
                 cost,
                 description,
-                coordinates,
+                latitude,
+                longitude,
                 userId
             })
             console.log(newAdventure)

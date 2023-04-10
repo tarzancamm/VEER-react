@@ -11,7 +11,8 @@ const AdventureModal = ({ modalState, closeModal }) => {
   const [title, setTitle] = useState("")
   const [cost, setCost] = useState("0")
   const [description, setDescription] = useState("")
-  const [coordinates, setCoordinates] = useState("")
+  const [latitude, setLatitude] = useState("")
+  const [longitude, setLongitude] = useState("")
   const authCtx = useContext(AuthContext)
 
   const adventureHandler = (e) => {
@@ -21,7 +22,8 @@ const AdventureModal = ({ modalState, closeModal }) => {
         title,
         cost,
         description,
-        coordinates,
+        latitude,
+        longitude,
         userId: authCtx.userId
       }
 
@@ -36,7 +38,8 @@ const AdventureModal = ({ modalState, closeModal }) => {
           setTitle("")
           setCost("0")
           setDescription("")
-          setCoordinates("")
+          setLatitude()
+          setLongitude()
           closeModal()
           Swal.fire({
             icon: "success",
@@ -151,10 +154,16 @@ const AdventureModal = ({ modalState, closeModal }) => {
             ></textarea>
           </div>
           <div className="flex flex-col mt-6">
-            <label htmlFor="adventure location">
-              Coordinates (location)
+            <label htmlFor="adventure latitude">
+              Latitude
             </label>
-            <input type="text" className="h-10 mt-2 pl-2 focus:outline-none" value={coordinates} onChange={(e) => setCoordinates(e.target.value)} />
+            <input type="text" className="h-10 mt-2 pl-2 focus:outline-none" value={latitude} onChange={(e) => setLatitude(e.target.value)} />
+          </div>
+          <div className="flex flex-col mt-6">
+            <label htmlFor="adventure longitude">
+              Longitude
+            </label>
+            <input type="text" className="h-10 mt-2 pl-2 focus:outline-none" value={longitude} onChange={(e) => setLongitude(e.target.value)} />
           </div>
           <div className="flex justify-center mt-12">
             <Button buttonText="Submit" />
