@@ -20,7 +20,7 @@ const Footer = () => {
         <div className='flex flex-col gap-1'>
             <p>Privacy Policy</p>
             <p>Terms & Conditions</p>
-            <button className='p-0' onClick={creditsHandler}>Credits</button>
+            <button className='mr-20' onClick={creditsHandler}>Credits</button>
         </div>
     </footer>
   )

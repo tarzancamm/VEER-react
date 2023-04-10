@@ -113,12 +113,11 @@ const AdventureModal = ({ modalState, closeModal }) => {
                 <li>Off The Wall</li>
               </ul>
               <ul className="text-xs mt-2 list-disc ml-4">
-                <li className="mb-1">Novel</li>
-                <li>Legal</li>
+                <li className="mb-1">Memorable</li>
+                <li>Novel</li>
               </ul>
               <ul className="text-xs mt-2 list-disc ml-4">
                 <li className="mb-1">Fun/Interesting</li>
-                <li>Memorable</li>
               </ul>
             </div>
           </div>

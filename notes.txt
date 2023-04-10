@@ -2,13 +2,16 @@ Features
 
 - Profile Screen
     - Add adventure
-    - Saved adventures
+    - Collections - fetch saved adventures
+    - My Adventures - fetch adventures for user, display adventure title, click adventure title to view/edit adventure
 
 - Home Screen Adventure Finder
-    - How it works (3 steps)
+    - How it works (2 steps)
     - Europe map (dynamic)
+        - Fetch adventures from database
     - Upvote/Downvote adventures
         - After ten votes, below 60% upvotes adventure does not get shown anymore
+    - Save adventures to collections
 
 - Authentication Screen
     - Login / Create Profile
